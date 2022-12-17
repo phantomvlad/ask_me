@@ -1,0 +1,13 @@
+.button {
+  color: white;
+  display: inline-block;
+  border: 0;
+  text-decoration: none;
+  padding: 8px 13px 7px;
+  border-radius: 3px;
+  font-size: 14px
+}
+
+.button-main {
+  background-color: #CC0000;
+}

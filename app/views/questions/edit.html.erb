@@ -1,0 +1,11 @@
+<div class="container">
+  <h2 class="title-lg ">Редактирование вопроса <%= @question.id %></h2>
+
+  <%= form_with model: @question do |form| %>
+    <p><%= form.label :body, 'Текст вопроса' %></p>
+    <p><%= form.text_area :body, rows: 5, class: 'form-text-area' %></p>
+    <p class="mt"><%= form.label :id_user %></p>
+    <p><%= form.text_field :id_user, class: 'form-text-field' %></p>
+    <p class="mt"><%= form.submit 'Сохранить', class:'button button-main' %> или <%= link_to 'вернуться', :back %></p>
+  <% end %>
+</div>
