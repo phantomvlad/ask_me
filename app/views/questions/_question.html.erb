@@ -1,5 +1,11 @@
-<h2 class="title-md">Вопрос номер <%= question.id %></h2>
-<p class="mb-lg mt-sm"><%= question.body %></p>
+<% if question.hidden == false %>
+  <h2 class="title-md">Вопрос номер <%= question.id %></h2>
+  <p class="mb-lg mt-sm"><%= question.body %></p>
+<% else %>
+  <h2 class="title-md hidden-text">Вопрос номер <%= question.id %></h2>
+  <p class="mb-lg mt-sm hidden-text"><%= question.body %></p>
+<% end %>
+
 <div class="question-footer">
   <div><%= link_to fa_icon("pencil"), edit_question_path(question), title: "Изменить вопрос" %>
 
