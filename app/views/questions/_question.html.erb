@@ -1,4 +1,4 @@
-<% if question.hidden == false %>
+<% unless question.hidden %>
   <h2 class="title-md">Вопрос номер <%= question.id %></h2>
   <p class="mb-lg mt-sm"><%= question.body %></p>
 <% else %>
@@ -7,14 +7,15 @@
 <% end %>
 
 <div class="question-footer">
-  <div><%= link_to fa_icon("pencil"), edit_question_path(question), title: "Изменить вопрос" %>
+  <div>
+    <%= link_to fa_icon("pencil"), edit_question_path(question), title: "Изменить вопрос" %>
 
-  <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
+    <%= button_to fa_icon("cloud"), hide_question_path(question),
+                  method: :put,
+                  form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} if question.hidden == false %>
+
+    <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
                     title: "Удалить вопрос", form: {data: {turbo_confirm: "Уверены, что хотите удалить вопрос #{question.id}?"}} %>
-
-  <%= button_to fa_icon("cloud"), hide_question_path(question),
-                    method: :put,
-                form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} if question.hidden == false %>
   </div>
 
   <div class="text-grey">
