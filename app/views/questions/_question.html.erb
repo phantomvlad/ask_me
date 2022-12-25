@@ -1,9 +1,9 @@
-<% unless question.hidden %>
-  <h2 class="title-md">Вопрос номер <%= question.id %></h2>
-  <p class="mb-lg mt-sm"><%= question.body %></p>
-<% else %>
+<% if question.hidden%>
   <h2 class="title-md hidden-text">Вопрос номер <%= question.id %></h2>
   <p class="mb-lg mt-sm hidden-text"><%= question.body %></p>
+<% else question.hidden %>
+  <h2 class="title-md">Вопрос номер <%= question.id %></h2>
+  <p class="mb-lg mt-sm"><%= question.body %></p>
 <% end %>
 
 <div class="question-footer">
@@ -12,7 +12,7 @@
 
     <%= button_to fa_icon("cloud"), hide_question_path(question),
                   method: :put,
-                  form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} if question.hidden == false %>
+                  form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} unless question.hidden %>
 
     <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
                     title: "Удалить вопрос", form: {data: {turbo_confirm: "Уверены, что хотите удалить вопрос #{question.id}?"}} %>
