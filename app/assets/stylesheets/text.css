@@ -30,3 +30,7 @@ a, button {
 .hidden-text {
   color: gray;
 }
+
+.text-bold {
+  font-weight: bold;
+}
