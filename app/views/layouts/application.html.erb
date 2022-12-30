@@ -12,7 +12,7 @@
 
   <body>
     <div class="wrapper">
-      <div class="navbar" style='<%= "background-color: #{current_user.color_navbar}" if current_user %>'>
+      <div class="navbar" style='<%= "background-color: #{current_user.navbar_color}" if current_user %>'>
         <p class="title-sm text-bold"><%= link_to "Ask me!", root_path %></p>
 
         <div>
