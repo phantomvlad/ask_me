@@ -18,11 +18,11 @@
         <div>
           <% if current_user.present? %>
             <%= content_tag "span", "#{display_nickname(current_user.nickname)}", class: "mt-sm" %>
-            <%= button_to "Выйти", session_path, method: :delete, class: "hidden-text"%>
+            <%= button_to fa_icon("pencil"), edit_user_path(current_user), title: "Изменить вопрос", method: :get %>
+            <%= link_to "Выйти", session_path, method: :delete, class: "hidden-text"%>
           <% else %>
             <%= link_to "Регистрация", new_user_path, class: "button button-yellow mr-sm" %>
             <%= link_to "Вход", new_session_path, class: "button button-yellow" %>
-
           <% end %>
         </div>
       </div>
