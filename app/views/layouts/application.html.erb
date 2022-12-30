@@ -12,12 +12,12 @@
 
   <body>
     <div class="wrapper">
-      <div class="navbar">
+      <div class="navbar" style='<%= "background-color: #{current_user.color_navbar}" if current_user %>'>
         <p class="title-sm text-bold"><%= link_to "Ask me!", root_path %></p>
 
         <div>
           <% if current_user.present? %>
-            <%= content_tag "span", "@#{current_user.nickname}", class: "mt-sm" %>
+            <%= content_tag "span", "#{display_nickname(current_user.nickname)}", class: "mt-sm" %>
             <%= button_to "Выйти", session_path, method: :delete, class: "hidden-text"%>
           <% else %>
             <%= link_to "Регистрация", new_user_path, class: "button button-yellow mr-sm" %>
