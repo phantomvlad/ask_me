@@ -1,4 +1,12 @@
 <div class="container">
+  <% if @question.errors.any? %>
+    <div class="mt">
+      <% @question.errors.full_messages.each do |message| %>
+        <p class="mb-sm text-red"><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
   <p class="mt">
     <%= link_to "Создать новый вопрос", new_question_path, class: 'button button-main' %>
   </p>

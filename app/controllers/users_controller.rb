@@ -4,11 +4,40 @@ class UsersController < ApplicationController
   end
 
   def create
-    user_params = params.require(:user).permit(:name, :nickname, :email, :phone, :password)
+    @user = User.new(user_params)
+    if @user.save
+      session[:id_user] = @user.id
+      redirect_to root_path, notice: "Вы успешно зарегистрировались!"
+    else
+      flash.now[:alert] = "Неверно заполнены поля"
+      render :new
+    end
+  end
 
-    user = User.create(user_params)
+  def edit
+    @user = User.find(params[:id])
+  end
 
-    session[:id_user] = user.id
-    redirect_to root_path, notice: "Вы успешно зарегистрировались!"
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to root_path, notice: "Вы успешно обновили аккаунт!"
+    else
+      flash.now[:alert] = "При попытке сохранить пользователя возникли ошибки"
+      render :edit
+    end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    session.delete(:user_id)
+    redirect_to root_path, notice: "Пользователь удален"
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:name, :nickname, :email, :phone, :password, :password_confirmation)
   end
 end

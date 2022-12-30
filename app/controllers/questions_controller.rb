@@ -1,10 +1,18 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: %i[update show destroy edit hide]
 
-  def create
-    question = Question.create(question_params)
+  def new
+    @question = Question.new
+  end
 
-    redirect_to question_path(question), notice: "Новый вопрос создан"
+  def create
+    @question = Question.new(question_params)
+
+    if @question.save
+      redirect_to root_path, notice: "Вопрос успешно создан!"
+    else
+      redirect_to root_path, notice: "Минимум 1 символ, максимум 280 символов"
+    end
   end
 
   def update
@@ -25,10 +33,6 @@ class QuestionsController < ApplicationController
     @question.destroy
 
     redirect_to questions_path, notice: "Ваш вопрос удален"
-  end
-
-  def new
-    @question = Question.new
   end
 
   def edit
