@@ -7,11 +7,13 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
+    @questions = Question.all
 
     if @question.save
       redirect_to root_path, notice: "Вопрос успешно создан!"
     else
-      redirect_to root_path, notice: "Минимум 1 символ, максимум 280 символов"
+      flash.now[:alert] = "Вопрос должен содержать от 1 до 280 символов"
+      render :index
     end
   end
 
