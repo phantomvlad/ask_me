@@ -9,11 +9,11 @@ class User < ApplicationRecord
   validates :email,
             presence: true,
             uniqueness: true,
-            format: { with: URI::MailTo::EMAIL_REGEXP, message: "введен неверно"  }
+            format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :nickname,
             presence: true,
             uniqueness: true,
-            format: { with: /\A\w*\z/, message: "должен содеражать только латинские буквы, цифры и _" },
+            format: { with: /\A\w*\z/ },
             length: { maximum: 40 }
 end
