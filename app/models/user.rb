@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+  def downcase_nickname
+    nickname.downcase!
+  end
 
   before_validation :downcase_nickname
 
@@ -13,8 +16,4 @@ class User < ApplicationRecord
             uniqueness: true,
             format: { with: /\A\w*\z/, message: "должен содеражать только латинские буквы, цифры и _" },
             length: { maximum: 40 }
-
-  def downcase_nickname
-    nickname.downcase!
-  end
 end
