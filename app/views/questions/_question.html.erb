@@ -3,7 +3,7 @@
   <p class="mb-lg mt-sm hidden-text"><%= question.body %></p>
 <% else question.hidden %>
   <h2 class="title-md">Вопрос номер <%= question.id %></h2>
-  <p class="mb-lg mt-sm"><%= simple_format(question.body) %></p>
+  <p class="mb-lg mt-sm"><%= sanitize simple_format(question.body) %></p>
 <% end %>
 
 <div class="question-footer">
