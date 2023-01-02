@@ -1,25 +1,35 @@
 <% if question.hidden %>
   <h2 class="title-md hidden-text">Вопрос номер <%= question.id %></h2>
-  <p class="mb-lg mt-sm hidden-text"><%= question.body %></p>
-<% else question.hidden %>
-  <h2 class="title-md">Вопрос номер <%= question.id %></h2>
-  <p class="mb-lg mt-sm"><%= sanitize simple_format(question.body), tags: ["p"] %></p>
+  <div class="mb-lg mt-sm hidden-text"><%= sanitize simple_format(question.body), tags: ["p"] %></div>
+  <% if question.answer.present? %>
+    <div class="mb-lg mt-sm hidden-text "><%= sanitize simple_format(question.answer), tags: ["p"] %></div>
+  <% end %>
+<% else %>
+  <h2 class="title-md" >Вопрос номер <%= question.id %></h2>
+  <div class="mb-lg mt-sm"><%= sanitize simple_format(question.body), tags: ["p"] %></div>
+  <% if question.answer.present? %>
+    <div class="mb-lg mt-sm text-dark-red"><%= sanitize simple_format(question.answer), tags: ["p"] %></div>
+  <% end %>
 <% end %>
 
-<div class="question-footer">
-  <div>
-    <%= link_to fa_icon("pencil"), edit_question_path(question), title: "Изменить вопрос" %>
 
-    <%= button_to fa_icon("cloud"), hide_question_path(question),
-                  method: :put,
-                  form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} unless question.hidden %>
+<% if current_user == question.user %>
+  <div class="question-footer">
+    <div class="text-grey">
+      <%= l(question.created_at, format: :short) %>
+    </div>
 
-    <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
-                    title: "Удалить вопрос", form: {data: {turbo_confirm: "Уверены, что хотите удалить вопрос #{question.id}?"}} %>
+    <% edit_icon = (question.answer.present? ? "pencil" : "reply") %>
+    <div>
+      <%= link_to fa_icon(edit_icon), edit_question_path(question), title: "Изменить вопрос", class: "mr-sm" %>
+
+      <%= button_to fa_icon("cloud"), hide_question_path(question), class: "mr-sm",
+                    method: :put,
+                    form: {data: {turbo_confirm: "Уверены, что хотите вопрос #{question.id} сделать скрытым?"}} unless question.hidden %>
+
+      <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
+                      title: "Удалить вопрос", form: {data: {turbo_confirm: "Уверены, что хотите удалить вопрос #{question.id}?"}} %>
+    </div>
   </div>
-
-  <div class="text-grey">
-    <%= l(question.created_at, format: :short) %>
-  </div>
-</div>
+<% end %>
 

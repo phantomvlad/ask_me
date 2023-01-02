@@ -1,0 +1,40 @@
+<div class="user-box">
+  <h2 class="title-lg mt-lg"><%= @user.name %></h2>
+  <p class="text-bold mt mb-lg"><%= @user.nickname %></p>
+
+  <% if current_user == @user %>
+    <p class="mt mb-lg">
+      <%= link_to fa_icon('pencil'), edit_user_path(@user) %>
+    </p>
+  <% end %>
+</div>
+
+<div class="container">
+  <% if @question.errors.any? %>
+    <div class="mt">
+      <% @question.errors.full_messages.each do |message| %>
+        <p class="mb-sm text-red"><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to "Спроси меня", new_question_path(user_id: @user.id), class: "button button-main" %>
+
+  <p class="mt">
+    <%= render 'questions/form', question: @question %>
+  </p>
+</div>
+
+<div class="container mt-sm">
+  <h2 class="title-lg">
+    На странице
+    <%= @questions.count %>
+    <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+  </h2>
+</div>
+
+<% @questions.each do |question| %>
+  <div class="mt-sm container">
+    <%= render question %>
+  </div>
+<% end %>

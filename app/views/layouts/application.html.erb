@@ -17,7 +17,7 @@
 
         <div>
           <% if current_user.present? %>
-            <%= content_tag "span", "#{display_nickname(current_user.nickname)}", class: "mt-sm" %>
+            <%= link_to "@#{current_user.nickname}", user_path(current_user), class: "mt-sm" %>
             <%= button_to fa_icon("pencil"), edit_user_path(current_user), title: "Изменить вопрос", method: :get %>
             <%= button_to "Выйти", session_path, method: :delete, class: "hidden-text"%>
           <% else %>
