@@ -25,13 +25,21 @@
   </p>
 </div>
 
-<div class="container mt-sm">
-  <h2 class="title-lg">
-    На странице
-    <%= @questions.count %>
-    <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
-  </h2>
-</div>
+<% if @questions.count == 0 %>
+  <div class="container mt-sm">
+    <h2 class="title-lg text-center">
+      Пока здесь пусто, задавай свой вопрос!
+    </h2>
+  </div>
+<% else %>
+  <div class="container mt-sm">
+    <h2 class="title-lg">
+      На странице
+      <%= @questions.count %>
+      <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+    </h2>
+  </div>
+<% end %>
 
 <% @questions.each do |question| %>
   <div class="mt-sm container">

@@ -16,7 +16,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to user_path(@question.user), notice: "Вопрос успешно создан!"
     else
-      redirect_to user_path(@question.user), notice: "Ошибка создания вопроса"
+      render "users/show"
     end
   end
 

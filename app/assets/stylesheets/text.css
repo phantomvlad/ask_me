@@ -42,3 +42,7 @@ a, button {
 .text-dark-red {
   color: #7c0008;
 }
+
+.text-center {
+  text-align: center;
+}
