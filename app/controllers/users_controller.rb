@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:id_user] = @user.id
+      session[:user_id] = @user.id
       redirect_to root_path, notice: "Вы успешно зарегистрировались!"
     else
       flash.now[:alert] = "Неверно заполнены поля"

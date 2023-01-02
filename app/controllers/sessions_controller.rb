@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: user_params[:email])&.authenticate(user_params[:password])
 
     if user.present?
-      session[:id_user] = user.id
+      session[:user_id] = user.id
       redirect_to root_path, notice: "Вы вошли на сайт"
     else
       flash.now[:alert] = "Неправильный email или пароль"
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:id_user)
+    session.delete(:user_id)
 
     redirect_to root_path, notice: "Вы вышли из аккаунта"
   end

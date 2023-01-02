@@ -15,6 +15,7 @@ class User < ApplicationRecord
             uniqueness: true,
             format: { with: /\A\w*\z/ },
             length: { maximum: 40 }
+
   validates :navbar_color,
             format: { with: /\A#[a-f0-9]{6}\z/ }
 
