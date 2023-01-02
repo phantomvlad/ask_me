@@ -12,7 +12,6 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to root_path, notice: "Вопрос успешно создан!"
     else
-      flash.now[:alert] = "Вопрос должен содержать от 1 до 280 символов"
       render :index
     end
   end
