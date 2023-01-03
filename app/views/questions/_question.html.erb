@@ -12,13 +12,18 @@
   <% end %>
 <% end %>
 
+<div class="question-footer">
+  <div class="text-grey">
+    Создан
+    <%= l(question.created_at, format: :short) %>
+    <% if question.author.present? %>
+      <%= link_to "@#{question.author.nickname}", user_path(question.author) %>
+    <% else %>
+      анонимно
+    <% end %>
+  </div>
 
-<% if current_user == question.user %>
-  <div class="question-footer">
-    <div class="text-grey">
-      <%= l(question.created_at, format: :short) %>
-    </div>
-
+  <% if current_user == question.user %>
     <% edit_icon = (question.answer.present? ? "pencil" : "reply") %>
     <div>
       <%= link_to fa_icon(edit_icon), edit_question_path(question), title: "Изменить вопрос", class: "mr-sm" %>
@@ -30,6 +35,5 @@
       <%= button_to fa_icon("trash-o"), question_path(question), method: :delete,
                       title: "Удалить вопрос", form: {data: {turbo_confirm: "Уверены, что хотите удалить вопрос #{question.id}?"}} %>
     </div>
-  </div>
-<% end %>
-
+  <% end %>
+</div>

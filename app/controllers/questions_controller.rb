@@ -12,11 +12,12 @@ class QuestionsController < ApplicationController
     question_params = params.require(:question).permit(:body, :user_id)
     @question = Question.new(question_params)
     @questions = Question.all
-
+    @question.author = current_user
+    
     if @question.save
       redirect_to user_path(@question.user), notice: "Вопрос успешно создан!"
     else
-      render "users/show"
+      render :new
     end
   end
 
