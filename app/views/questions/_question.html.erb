@@ -1,14 +1,14 @@
 <% if question.hidden %>
   <h2 class="title-md hidden-text">Вопрос номер <%= question.id %></h2>
-  <div class="mb-lg mt-sm hidden-text"><%= sanitize simple_format(question.body), tags: ["p"] %></div>
+  <div class="mb-lg mt-sm hidden-text"><%= simple_format h(question.body) %></div>
   <% if question.answer.present? %>
-    <div class="mb-lg mt-sm hidden-text "><%= sanitize simple_format(question.answer), tags: ["p"] %></div>
+    <div class="mb-lg mt-sm hidden-text "><%= simple_format h(question.answer) %></div>
   <% end %>
 <% else %>
   <h2 class="title-md" >Вопрос номер <%= question.id %></h2>
-  <div class="mb-lg mt-sm"><%= sanitize simple_format(question.body), tags: ["p"] %></div>
+  <div class="mb-lg mt-sm"><%= simple_format h(question.body) %></div>
   <% if question.answer.present? %>
-    <div class="mb-lg mt-sm text-dark-red"><%= sanitize simple_format(question.answer), tags: ["p"] %></div>
+    <div class="mb-lg mt-sm text-dark-red"><%= simple_format h(question.answer) %></div>
   <% end %>
 <% end %>
 
