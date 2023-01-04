@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
     @question.author = current_user
 
     if @question.save
-      redirect_to user_path(@question.user), notice: "Вопрос успешно создан!"
+      redirect_to user_path(@question.user.nickname), notice: "Вопрос успешно создан!"
     else
       render :new
     end
@@ -24,7 +24,7 @@ class QuestionsController < ApplicationController
     question_params = params.require(:question).permit(:body, :answer)
     @question.update(question_params)
 
-    redirect_to user_path(@question.user), notice: "Вопрос изменен"
+    redirect_to user_path(@question.user.nickname), notice: "Вопрос изменен"
   end
 
   def show
@@ -41,7 +41,7 @@ class QuestionsController < ApplicationController
     user = @question.user
     @question.destroy
 
-    redirect_to user_path(user), notice: "Ваш вопрос удален"
+    redirect_to user_path(user.nickname), notice: "Ваш вопрос удален"
   end
 
   def edit

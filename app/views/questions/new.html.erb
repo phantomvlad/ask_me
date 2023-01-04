@@ -6,7 +6,7 @@
       <% end %>
     </div>
   <% end %>
-  <h2 class="title-lg mb-sm">Новый вопрос для <%= link_to "@#{@question.user.nickname}", user_path(@question.user) %></h2>
+  <h2 class="title-lg mb-sm">Новый вопрос для <%= link_to "@#{@question.user.nickname}", user_path(@question.user.nickname) %></h2>
 
   <%= render 'form', question: @question %>
 </div>
