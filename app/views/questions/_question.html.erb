@@ -1,4 +1,4 @@
-<h2 class="title-md <%= 'hidden-text' if question.hidden? %>">Вопрос номер <%= question.id %></h2>
+<h2 class="title-md <%= 'hidden-text' if question.hidden? %>">Вопрос номер <%= question.id %> пользователю <%= link_to "@#{question.user.nickname}", user_path(question.user) %></h2>
 <div class="mb-lg mt-sm <%= 'hidden-text' if question.hidden? %>"><%= simple_format h(question.body) %></div>
 <% if question.answer.present? %>
   <div class="mb-lg mt-sm <%= 'hidden-text' if question.hidden? %>"><%= simple_format h(question.answer) %></div>

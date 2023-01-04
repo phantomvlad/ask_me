@@ -33,9 +33,13 @@
 <% else %>
   <div class="container mt-sm">
     <h2 class="title-lg">
-      На странице
+      На странице <%= "@#{@user.nickname}" %>
       <%= @questions.count %>
       <%= inclination(@questions.count, 'вопрос', 'вопроса', 'вопросов') %>
+    </h2>
+
+    <h2>
+      <%= link_to "Все вопросы", root_path %>
     </h2>
   </div>
 <% end %>
