@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
   def index
     @questions = Question.order(created_at: :desc).last(10)
     @question = Question.new
-    @users = User.order(created_at: :desc).last(10)
+    @users = User.last(10)
   end
 
   def destroy
