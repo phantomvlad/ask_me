@@ -2,7 +2,6 @@ class QuestionsController < ApplicationController
   before_action :ensure_current_user, only: %i[update destroy edit hide]
   before_action :set_question_for_current_user, only: %i[update destroy edit hide]
 
-
   def new
     @user = User.find(params[:user_id])
     @question = Question.new(user: @user)

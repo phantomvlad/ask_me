@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :questions, dependent: :delete_all
+  has_many :authors_questions, class_name: "Question", foreign_key: "author_id"
 
   has_secure_password
 

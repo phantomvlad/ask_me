@@ -31,6 +31,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @user.authors_questions.each {|question| question.update(author_id: nil)}
+
     @user.destroy
 
     session.delete(:user_id)
