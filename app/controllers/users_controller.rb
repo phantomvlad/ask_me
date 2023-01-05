@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def set_user
-    @user = User.find_by(nickname: params[:nickname])
+    @user = User.find_by!(nickname: params[:nickname])
   end
 
   def authorise_user
