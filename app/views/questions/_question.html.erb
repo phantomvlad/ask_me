@@ -33,7 +33,7 @@
 
 <% if question.hashtags.any? %>
   <div class="hashtag-footer">
-    <% question.hashtags.each do |hashtag| %>
+    <% question.hashtags.uniq.each do |hashtag| %>
       <p class="hashtag"><%= link_to(hashtag.body, hashtag_path(hashtag.body)) %></p>
     <% end %>
   </div>
