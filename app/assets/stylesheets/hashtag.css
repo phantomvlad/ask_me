@@ -1,0 +1,18 @@
+.hashtags-box {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 5px;
+  justify-content: center;
+}
+
+.hashtag {
+  margin: 5px 5px;
+}
+
+.hashtag-footer {
+  border-top: 1px solid #e0e0e0;
+  display: flex;
+  padding-right: 3px;
+  padding-top: 10px;
+}
+

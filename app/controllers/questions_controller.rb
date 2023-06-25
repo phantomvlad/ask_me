@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
     @question.author = current_user
 
     if @question.save
+      Hashtag.create_hashtag(@question)
       redirect_to user_path(@question.user.nickname), notice: "Вопрос успешно создан!"
     else
       render :new
@@ -32,7 +33,8 @@ class QuestionsController < ApplicationController
   end
 
   def index
-    @questions = Question.order(created_at: :desc).last(10)
+    @hashtags = Hashtag.all
+    @questions = Question.order(created_at: :desc).first(10)
     @question = Question.new
     @users = User.last(10)
   end
