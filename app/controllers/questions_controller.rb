@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
   def update
     question_params = params.require(:question).permit(:body, :answer)
     @question.update(question_params)
+    Hashtag.create_hashtag(@question)
 
     redirect_to user_path(@question.user.nickname), notice: "Вопрос изменен"
   end
