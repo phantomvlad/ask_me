@@ -30,13 +30,15 @@
   </h2>
 </div>
 
-<div class="container mt-sm">
-  <div class="hashtags-box">
-    <% @hashtags.each do |hashtag| %>
-      <p class="hashtag"><%= link_to "#{hashtag.body}", hashtag_path(hashtag.body) %></p>
-    <% end %>
+<% if @hashtags.any? %>
+  <div class="container mt-sm">
+    <div class="hashtags-box">
+      <% @hashtags.each do |hashtag| %>
+        <p class="hashtag"><%= link_to "#{hashtag.body}", hashtag_path(hashtag.body) %></p>
+      <% end %>
+    </div>
   </div>
-</div>
+<% end %>
 
 <% @questions.each do |question| %>
   <div class="mt-sm container">
